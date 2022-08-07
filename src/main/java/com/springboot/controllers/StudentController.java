@@ -3,9 +3,11 @@ package com.springboot.controllers;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,19 +23,26 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    //GetMapping for getting all Students details which are stored in the database
     @GetMapping(path = "/students")
     public List<Student> getAllStudents(){
 
         return studentService.getStudents();
     }
 
-
+    //PostMapping for Posting Students details to the database.
     @PostMapping(path = "/new/student")
     public Student saveStudent(@RequestBody @Valid StudentRequestDTO studentRequest ){
         return studentService.saveStudent(studentRequest);
     }
 
-    
+    //GetMapping {id} for Getting some specific Student Detail which are stored in the getStudebt
+    @GetMapping(path = "/students/{id}")
+    public Student getStudentById(@PathVariable Long id){
+        return studentService.getStudentById(id);
+
+    }
+
 
 
 

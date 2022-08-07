@@ -29,7 +29,10 @@ public class StudentService {
        return  studentRepository.save(student);
     }
 
-    
+    public Student getStudentById(Long id){
+        return  studentRepository.findById(id)
+        .orElseThrow(()-> new RuntimeException("Not Found User by ID: " +id));
+    }
 
 
 }
