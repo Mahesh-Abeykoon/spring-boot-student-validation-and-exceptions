@@ -46,7 +46,10 @@ public class StudentService {
 		
 		//save existing student to thr database
 		return studentRepository.save(existingStudent);
-        
     }
 
+    public void deleteStudent(Long id){
+         studentRepository.deleteById(id);
+        
+    }
 }
