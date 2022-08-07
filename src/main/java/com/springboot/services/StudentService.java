@@ -34,5 +34,19 @@ public class StudentService {
         .orElseThrow(()-> new RuntimeException("Not Found User by ID: " +id));
     }
 
+    public Student updateStudent(Long id, StudentRequestDTO studentRequest){
+
+        Student existingStudent = studentRepository.findById(id)
+        .orElseThrow(()-> new RuntimeException("Not Found User by ID: " +id));
+		
+                existingStudent.setName(studentRequest.getName());
+                existingStudent.setAge(studentRequest.getAge());
+                existingStudent.setGuardian(studentRequest.getGuardian());
+                existingStudent.setGuardian(studentRequest.getGuardian());
+		
+		//save existing student to thr database
+		return studentRepository.save(existingStudent);
+        
+    }
 
 }
